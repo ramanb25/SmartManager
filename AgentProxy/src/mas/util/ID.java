@@ -164,6 +164,7 @@ public class ID implements Serializable{
 			public static final String GSA_GUI_instance = "GUIinstanceOfGSA";
 			public static final String batchDatabase = "GSA_batchDatabase";
 			public static final String batchCount = "GSA_batchCount";
+			public static final String customerPriority = "CPN";
 		}
 		
 		

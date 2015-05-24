@@ -3,6 +3,8 @@ package mas.globalSchedulingproxy.agent;
 import jade.core.AID;
 import jade.lang.acl.MessageTemplate;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -82,15 +84,19 @@ public abstract class AbstractGSCapability  extends Capability {
 		Belief<Integer> batchCount = new TransientBelief<Integer>(
 				ID.GlobalScheduler.BeliefBaseConst.batchCount);
 
+		Belief<HashMap<String,Integer>> customerPriority= new TransientBelief
+				<HashMap<String,Integer>>(ID.GlobalScheduler
+				.BeliefBaseConst.customerPriority);
+		
 		dBase.setValue(null);
 		
 		underNegotiation.setValue(null);
 		NoOfMachines.setValue(0);
 		batchCount.setValue(0);
-		
+		customerPriority.setValue(new HashMap<String,Integer>());
 		beliefs.add(BB_AID);
 		beliefs.add(NoOfMachines);
-		
+		beliefs.add(customerPriority);
 		beliefs.add(query);
 		beliefs.add(underNegotiation);
 		beliefs.add(GSA_gui);

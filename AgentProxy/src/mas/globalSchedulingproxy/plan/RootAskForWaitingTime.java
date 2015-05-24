@@ -1,6 +1,7 @@
 package mas.globalSchedulingproxy.plan;
 
 import java.awt.TrayIcon.MessageType;
+import java.util.HashMap;
 
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
@@ -17,8 +18,10 @@ import mas.util.AgentUtil;
 import mas.util.ID;
 import mas.util.MessageIds;
 import mas.util.ZoneDataUpdate;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import bdi4jade.core.BDIAgent;
 import bdi4jade.core.BeliefBase;
 import bdi4jade.message.MessageGoal;
@@ -66,7 +69,10 @@ public class RootAskForWaitingTime extends Behaviour implements PlanBody {
 				getValue();
 		try {
 			comingBatch = (Batch)((MessageGoal)PI.getGoal()).getMessage().getContentObject();
-			
+			HashMap<String,Integer> custPriority= (HashMap<String,Integer>)
+					bfBase.getBelief(ID.GlobalScheduler.BeliefBaseConst.customerPriority).getValue();
+					
+			comingBatch.setCPN(custPriority.get(comingBatch.getCustomerId()));
 			if(comingBatch.getBatchNumber() == -1) {
 				comingBatch.setBatchNumber(++ batchNumber);
 				bfBase.updateBelief(ID.GlobalScheduler.BeliefBaseConst.batchCount, batchNumber);
@@ -130,7 +136,7 @@ public class RootAskForWaitingTime extends Behaviour implements PlanBody {
 			break;
 
 		case 1:
-
+			
 			ZoneDataUpdate update = new ZoneDataUpdate.Builder(ID.GlobalScheduler.ZoneData.GetWaitingTime)
 			.value(comingBatch).setReplyWith(msgReplyID).Build();
 			AgentUtil.sendZoneDataUpdate(blackboard, update, myAgent);
