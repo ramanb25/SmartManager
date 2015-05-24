@@ -35,7 +35,7 @@ public class NegotiationJobTileTableModel extends AbstractTableModel implements 
 
 	@Override
 	public String getColumnName(int arg0) {
-		return "<html><b>NEGOTIATION BIDS</b></html>";
+		return "<html><b style='color:31004A'>NEGOTIATION MESSAGES</b></html>";
 	}
 
 	@Override

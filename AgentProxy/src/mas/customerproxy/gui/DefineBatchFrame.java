@@ -67,7 +67,7 @@ public class DefineBatchFrame extends JFrame{
 
 	private int NumOps;
 
-	private JLabel lblHeading;
+//	private JLabel lblHeading;
 	private JLabel lblJobID;
 //	private JLabel lblCPN;
 	private JLabel lblDueDate;
@@ -125,7 +125,7 @@ public class DefineBatchFrame extends JFrame{
 			e.printStackTrace();
 		}
 
-		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
+//		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
 //		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
 		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
@@ -152,8 +152,8 @@ public class DefineBatchFrame extends JFrame{
 		this.sendJob = new JButton(Labels.sendJobButton);
 		sendJob.addActionListener(new sendBatchListener());
 
-		this.lblHeading.setFont(TableUtil.headings);
-		myPanel.add(lblHeading,"wrap");
+//		this.lblHeading.setFont(TableUtil.headings);
+//		myPanel.add(lblHeading,"wrap");
 
 		myPanel.add(lblJobID);
 		myPanel.add(txtJobID,"wrap");

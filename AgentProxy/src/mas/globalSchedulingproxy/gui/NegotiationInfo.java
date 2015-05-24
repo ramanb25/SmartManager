@@ -1,5 +1,6 @@
 package mas.globalSchedulingproxy.gui;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,6 +23,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 import mas.globalSchedulingproxy.agent.GlobalSchedulingAgent;
 import mas.jobproxy.Batch;
@@ -53,7 +56,7 @@ public class NegotiationInfo {
 	private static final long serialVersionUID = 1L;
 	private GlobalSchedulingAgent gAgent;
 
-	private WebPanel myPanel;
+	private WebPanel panel1, panel2;
 	private JPanel operationPanel;
 	private JPanel btnPanel;
 	private JButton confirmJob;
@@ -99,12 +102,13 @@ public class NegotiationInfo {
 			generatedJob = populatingBatch.getFirstJob();
 		}
 
-		this.myPanel = new WebPanel(new MigLayout());
+		this.panel1 = new WebPanel(new MigLayout("","[]50[]","[]10[][][]"));
+		this.panel2 = new WebPanel(new MigLayout("","[]45[]","[]20[][][]20"));
 		btnPanel = new JPanel(new FlowLayout());
 		operationPanel = new JPanel(new MigLayout());
 		this.gAgent = cAgent;
 //		this.confirmJob = new JButton("Confirm");
-		this.negotiateJob = new JButton("Send For Negotiation");
+		this.negotiateJob = new JButton("Send");
 
 		dateModel = new UtilDateModel();
 
@@ -149,10 +153,10 @@ public class NegotiationInfo {
 		this.lblOpsHeading = new JLabel(Labels.CustomerLabels.jobOperationHeading);
 		this.lblPenalty = new JLabel(Labels.CustomerLabels.jobPenalty);
 		this.lblBatchSize = new JLabel(Labels.CustomerLabels.batchSize);
-		this.lblCustomerIdHeading = new JLabel("Customer Id : ");
+		this.lblCustomerIdHeading = new JLabel("Customer Id  ");
 		this.lblCustomerId = new WebHotkeyLabel();
 
-		this.lblWaitingTimeHeading = new JLabel("Expected Time by GSA : ");
+		this.lblWaitingTimeHeading = new JLabel("Last due date by you ");
 		this.txtWaitingTime = new JTextField(Labels.defaultJTextSize*2);
 
 		this.txtCPN = new FormattedDoubleField();
@@ -174,30 +178,31 @@ public class NegotiationInfo {
 		txtBatchSize.setColumns(Labels.defaultJTextSize/2);
 
 		this.lblHeading.setFont(TableUtil.headings);
-		myPanel.add(lblHeading,"wrap");
+		this.lblHeading.setForeground(Color.decode("#3B5998"));
+		panel1.add(lblHeading,"wrap");
 
-		myPanel.add(lblCustomerIdHeading);
-		myPanel.add(lblCustomerId,"wrap");
+		panel1.add(lblCustomerIdHeading);
+		panel1.add(lblCustomerId,"wrap");
 
-		myPanel.add(lblJobID);
-		myPanel.add(txtJobID,"wrap");
+		panel1.add(lblJobID);
+		panel1.add(txtJobID,"wrap");
 
 		//		myPanel.add(lblJobNo);
 		//		myPanel.add(txtJobNo,"wrap");
 
-		myPanel.add(lblCPN);
-		myPanel.add(txtCPN,"wrap");
+		panel1.add(lblCPN);
+		panel1.add(txtCPN,"wrap");
 
-		myPanel.add(lblPenalty);
-		myPanel.add(txtPenaltyRate,"wrap");
+		panel1.add(lblPenalty);
+		panel1.add(txtPenaltyRate,"wrap");
 
-		myPanel.add(lblBatchSize);
-		myPanel.add(txtBatchSize,"wrap");
+		panel1.add(lblBatchSize);
+		panel1.add(txtBatchSize,"wrap");
 
-		myPanel.add(lblWaitingTimeHeading);
-		myPanel.add(txtWaitingTime,"wrap");
+		panel1.add(lblWaitingTimeHeading);
+		panel1.add(txtWaitingTime,"wrap");
 
-		myPanel.add(lblDueDate);
+/*		myPanel.add(lblDueDate);
 		myPanel.add(datePicker);
 		myPanel.add(timeSpinner,"wrap");
 
@@ -208,10 +213,28 @@ public class NegotiationInfo {
 		myPanel.add(operationPanel,"wrap");
 
 //		btnPanel.add(confirmJob);
+		btnPanel.add(n	egotiateJob);
+
+		myPanel.add(btnPanel);*/
+		Border borderLine=BorderFactory.createLineBorder(Color.decode("#3B5998"));
+		panel1.setBorder(borderLine);
+		panel2.add(panel1,"span, growx, wrap");
+		
+		panel2.add(lblWaitingTimeHeading);
+		panel2.add(txtWaitingTime,"span, growx, wrap");
+
+		panel2.add(lblDueDate);
+		panel2.add(datePicker, "split 2");
+		panel2.add(timeSpinner,"wrap");
+
+		panel2.add(lblOpsHeading);
+		panel2.add(operationPanel,"wrap");
+
+//		btnPanel.add(confirmJob);
 		btnPanel.add(negotiateJob);
 
-		myPanel.add(btnPanel);
-
+		panel2.add(btnPanel, "span 2");
+		
 		buttonListener clickListener = new buttonListener();
 //		confirmJob.addMouseListener(clickListener);
 		negotiateJob.addMouseListener(clickListener);
@@ -406,7 +429,7 @@ public class NegotiationInfo {
 	}
 
 	public WebPanel getPanel() {
-		return myPanel;
+		return panel2;
 	};
 
 }

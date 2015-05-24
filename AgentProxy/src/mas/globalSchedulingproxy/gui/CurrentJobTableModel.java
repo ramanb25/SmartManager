@@ -33,7 +33,7 @@ public class CurrentJobTableModel extends AbstractTableModel implements TableMod
 
 	@Override
 	public String getColumnName(int arg0) {
-		return "<html><b>JOBS</b></html>";
+		return "<html><b style='color:C63D2D'>IN PROGRESS</b></html>";
 	}
 
 	@Override

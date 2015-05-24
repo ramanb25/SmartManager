@@ -33,7 +33,7 @@ public class CompletedJobTableModel extends AbstractTableModel implements TableM
 
 	@Override
 	public String getColumnName(int arg0) {
-		return "<html><b>COMPLETED JOBS</b></html>";
+		return "<html><b style='color:003567'>COMPLETED ORDERS</b></html>";
 	}
 
 	@Override
