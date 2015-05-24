@@ -1,6 +1,7 @@
 package configuration;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 import starter.AgentStarter;
 import net.miginfocom.swing.MigLayout;
@@ -31,7 +33,7 @@ public class ConfigFrame extends JFrame {
 	private WebBreadcrumbPanel panel1;
 
 	public ConfigFrame() {
-		setLayout(new MigLayout());
+		setLayout(new FlowLayout());
 		panel1 = new WebBreadcrumbPanel ( new VerticalFlowLayout() );
 		panel1.add(new JLabel("Choose Agent to start"));
 
@@ -45,7 +47,6 @@ public class ConfigFrame extends JFrame {
 		panel1.add (allAgentsbtn);
 
 		SwingUtils.groupButtons ( panel1 );
-
 		add(panel1, "wrap");
 
 		JButton submit = new JButton();
@@ -122,12 +123,11 @@ public class ConfigFrame extends JFrame {
 	}
 
 	private void showGui() {
-		setTitle("SmartM Manager :: Configuration Screen");
-		setResizable(false);
-		//		setPreferredSize(new Dimension(600,500));
+		setTitle("SmartM Manager :: Configuration");
+		setMinimumSize(new Dimension(325, 200));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pack();
+//		pack();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int centerX = (int)screenSize.getWidth() / 2;
 		int centerY = (int)screenSize.getHeight() / 2;

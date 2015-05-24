@@ -33,7 +33,7 @@ public class Jobloader {
 	int countJob = 1;
 	private String localName;
 
-	private String[] tableHeaders = {"Batch ID"/*, "CPN"*/ , "Penalty Rate", "Batch Count"};
+	private String[] tableHeaders = {"Order ID"/*, "CPN"*/ , "Penalty (Rs./s)", "Batch Count"};
 
 	public Jobloader(String str) {
 		this.localName = str;
