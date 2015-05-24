@@ -58,7 +58,7 @@ public class JobQueryReplyFrame extends JFrame{
 
 		this.lblHeading = new JLabel("Job Query Results");
 
-		this.lblBatchIDHeading = new JLabel(Labels.CustomerLabels.BatchID);
+		this.lblBatchIDHeading = new JLabel(Labels.CustomerLabels.OrderID);
 		this.lblCPNHeading = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDateHeading = new JLabel(Labels.CustomerLabels.jobDueDate);
 		this.lblPenaltyHeading = new JLabel(Labels.CustomerLabels.jobPenalty);

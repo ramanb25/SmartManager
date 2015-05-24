@@ -144,8 +144,8 @@ public class NegotiationInfo {
 		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
 		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
-		this.lblJobID = new JLabel(Labels.CustomerLabels.BatchID);
-		this.lblJobNo = new JLabel(Labels.CustomerLabels.batchNo);
+		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
+		this.lblJobNo = new JLabel(Labels.CustomerLabels.OrderNo);
 		this.lblOpsHeading = new JLabel(Labels.CustomerLabels.jobOperationHeading);
 		this.lblPenalty = new JLabel(Labels.CustomerLabels.jobPenalty);
 		this.lblBatchSize = new JLabel(Labels.CustomerLabels.batchSize);

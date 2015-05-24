@@ -1,5 +1,6 @@
 package mas.customerproxy.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -59,7 +60,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 	private BufferedImage plusButtonIcon;
 
 	private JScrollPane scroller;
-	private JPanel myPanel;
+	private JPanel myPanel, panel2;
 	private JPanel operationPanel;
 	private JPanel btnPanel;
 	private JButton confirmJob;
@@ -76,7 +77,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 	private JLabel lblHeading;
 	private JLabel lblJobID;
 	private JLabel lblJobNo;
-	private JLabel lblCPN;
+//	private JLabel lblCPN;
 	private JLabel lblDueDate;
 	private JLabel lblOpsHeading;
 	private JLabel lblPenalty;
@@ -88,7 +89,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 	private WebHotkeyLabel lblCustomerId;
 	private FormattedStringField txtJobID;
 	private FormattedIntegerField txtJobNo;
-	private FormattedDoubleField txtCPN;
+//	private FormattedDoubleField txtCPN;
 	private FormattedIntegerField txtNumOps;
 	private JTextField txtWaitingTime;
 	private FormattedIntegerField txtBatchSize;
@@ -114,7 +115,8 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		}
 
 		this.scroller = new JScrollPane();
-		this.myPanel = new JPanel(new MigLayout());
+		this.myPanel = new JPanel(new MigLayout("",	"[]50[]","[]10[][][]"));
+		this.panel2 = new JPanel(new MigLayout("",	"[]25[]","[]20[][][]20"));
 		btnPanel = new JPanel(new FlowLayout());
 		operationPanel = new JPanel(new MigLayout());
 		this.cAgent = cAgent;
@@ -158,21 +160,21 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		//		}
 
 		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
-		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
+//		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
-		this.lblJobID = new JLabel(Labels.CustomerLabels.BatchID);
-		this.lblJobNo = new JLabel(Labels.CustomerLabels.batchNo);
+		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
+		this.lblJobNo = new JLabel(Labels.CustomerLabels.OrderNo);
 		this.lblOpsHeading = new JLabel(Labels.CustomerLabels.jobOperationHeading);
 		this.lblPenalty = new JLabel(Labels.CustomerLabels.jobPenalty);
 		this.lblBatchSize = new JLabel(Labels.CustomerLabels.batchSize);
-		this.lblCustomerIdHeading = new JLabel("Customer Id : ");
+		this.lblCustomerIdHeading = new JLabel("Customer ID");
 		this.lblCustomerId = new WebHotkeyLabel();
 
-		this.lblWaitingTimeHeading = new JLabel("Expected Time by GSA : ");
+		this.lblWaitingTimeHeading = new JLabel("Expected Delivery Date");
 		this.txtWaitingTime = new JTextField(Labels.defaultJTextSize*2);
 
-		this.txtCPN = new FormattedDoubleField();
-		txtCPN.setColumns(Labels.defaultJTextSize);
+//		this.txtCPN = new FormattedDoubleField();
+//		txtCPN.setColumns(Labels.defaultJTextSize);
 
 		this.txtJobID = new FormattedStringField();
 		txtJobID.setColumns(Labels.defaultJTextSize);
@@ -181,19 +183,21 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		txtJobNo.setColumns(Labels.defaultJTextSize);
 
 		this.txtNumOps = new FormattedIntegerField();
-		txtNumOps.setColumns(Labels.defaultJTextSize/2);
+		txtNumOps.setColumns(Labels.defaultJTextSize);
 
 		this.txtPenaltyRate = new FormattedDoubleField();
 		txtPenaltyRate.setColumns(Labels.defaultJTextSize);
 
 		this.txtBatchSize = new FormattedIntegerField();
-		txtBatchSize.setColumns(Labels.defaultJTextSize/2);
+		txtBatchSize.setColumns(Labels.defaultJTextSize);
 
 		this.lblHeading.setFont(TableUtil.headings);
+		this.lblHeading.setForeground(Color.decode("#3B5998"));
+		
 		myPanel.add(lblHeading,"wrap");
 
 		myPanel.add(lblCustomerIdHeading);
-		myPanel.add(lblCustomerId,"wrap");
+		myPanel.add(lblCustomerId,"growx 20, wrap");
 
 		myPanel.add(lblJobID);
 		myPanel.add(txtJobID,"wrap");
@@ -201,8 +205,8 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		myPanel.add(lblJobNo);
 		myPanel.add(txtJobNo,"wrap");
 
-		myPanel.add(lblCPN);
-		myPanel.add(txtCPN,"wrap");
+//		myPanel.add(lblCPN);
+//		myPanel.add(txtCPN,"wrap");
 
 		myPanel.add(lblPenalty);
 		myPanel.add(txtPenaltyRate,"wrap");
@@ -210,24 +214,40 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		myPanel.add(lblBatchSize);
 		myPanel.add(txtBatchSize,"wrap");
 
-		myPanel.add(lblWaitingTimeHeading);
+/*		myPanel.add(lblWaitingTimeHeading);
 		myPanel.add(txtWaitingTime,"wrap");
 
 		myPanel.add(lblDueDate);
 		myPanel.add(datePicker);
 		myPanel.add(timeSpinner,"wrap");
 
-		myPanel.add(lblOpsHeading,"wrap");
+		myPanel.add(lblOpsHeading);
 		myPanel.add(operationPanel,"wrap");
 
 		btnPanel.add(confirmJob);
 		btnPanel.add(negotiateJob);
 		btnPanel.add(btnCancelNegotiation);
 
-		myPanel.add(btnPanel);
-
+		myPanel.add(btnPanel);*/
 		this.scroller = new JScrollPane(myPanel);
-		add(scroller);
+		panel2.add(this.scroller,"span, growx, wrap");
+		panel2.add(lblWaitingTimeHeading);
+		panel2.add(txtWaitingTime,"span, growx, wrap");
+
+		panel2.add(lblDueDate);
+		panel2.add(datePicker, "split 2");
+		panel2.add(timeSpinner,"wrap");
+
+		panel2.add(lblOpsHeading);
+		panel2.add(operationPanel,"wrap");
+
+		btnPanel.add(confirmJob);
+		btnPanel.add(negotiateJob);
+		btnPanel.add(btnCancelNegotiation);
+
+		panel2.add(btnPanel, "span 2");
+		
+//		add(scroller);
 
 		buttonListener clickListener = new buttonListener();
 		confirmJob.addActionListener(clickListener);
@@ -235,6 +255,8 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		btnCancelNegotiation.addActionListener(clickListener);
 
 		_populate();
+		scroller.setSize(panel2.WIDTH, scroller.HEIGHT);
+		add(panel2);
 		showGui();
 	}
 
@@ -251,7 +273,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 			txtWaitingTime.setText(String.valueOf(new Date(populatingBatch.getExpectedDueDate())) ) ;
 			txtWaitingTime.setEnabled(false);
 
-			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
+//			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
 			txtPenaltyRate.setText(String.valueOf(populatingBatch.getPenaltyRate()));
 
 			txtNumOps.setText(String.valueOf(populatingBatch.getFirstJob().getOperations().size()));
@@ -284,7 +306,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 
 		x2 = checkPenaltyRate();
 		if(x2) {
-			x3 = checkCPN();
+//			x3 = checkCPN();
 		}
 		if(x2 & x3) {
 			x4 = checkDueDate();
@@ -428,7 +450,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 	 * @return True if CPN entered by customer is valid. Otherwise show an error message and return false
 	 * . Sets value of CPN of batch to the value in the field, if in proper format.
 	 */
-	private boolean checkCPN() {
+/*	private boolean checkCPN() {
 		boolean status = true;
 		if(! txtCPN.getText().matches("-?\\d+(\\.\\d+)?") ) {
 
@@ -446,7 +468,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 					txtCPN.getText() ) );
 		}
 		return status;
-	}
+	}*/
 
 	//	class AddOperationListener implements ActionListener {
 	//

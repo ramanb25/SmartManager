@@ -74,7 +74,7 @@ public class ChangeDueDateGUI extends JFrame{
 	private JLabel lblHeading;
 	private JLabel lblJobID;
 	private JLabel lblJobNo;
-	private JLabel lblCPN;
+//	private JLabel lblCPN;
 	private JLabel lblDueDate;
 	private JLabel lblOpsHeading;
 	private JLabel lblPenalty;
@@ -85,7 +85,7 @@ public class ChangeDueDateGUI extends JFrame{
 	private WebHotkeyLabel lblCustomerId;
 	private FormattedStringField txtJobID;
 	private FormattedIntegerField txtJobNo;
-	private FormattedDoubleField txtCPN;
+//	private FormattedDoubleField txtCPN;
 	private JTextField txtWaitingTime;
 	private FormattedIntegerField txtBatchSize;
 	private FormattedDoubleField txtPenaltyRate;
@@ -154,21 +154,21 @@ public class ChangeDueDateGUI extends JFrame{
 		//		}
 
 		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
-		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
+//		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
-		this.lblJobID = new JLabel(Labels.CustomerLabels.BatchID);
-		this.lblJobNo = new JLabel(Labels.CustomerLabels.batchNo);
+		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
+		this.lblJobNo = new JLabel(Labels.CustomerLabels.OrderNo);
 		this.lblOpsHeading = new JLabel(Labels.CustomerLabels.jobOperationHeading);
 		this.lblPenalty = new JLabel(Labels.CustomerLabels.jobPenalty);
 		this.lblBatchSize = new JLabel(Labels.CustomerLabels.batchSize);
 		this.lblCustomerIdHeading = new JLabel("Customer Id : ");
 		this.lblCustomerId = new WebHotkeyLabel();
 
-		this.lblWaitingTimeHeading = new JLabel("Expected Time by GSA : ");
+		this.lblWaitingTimeHeading = new JLabel("Expected Delivery Date");
 		this.txtWaitingTime = new JTextField(Labels.defaultJTextSize*2);
 
-		this.txtCPN = new FormattedDoubleField();
-		txtCPN.setColumns(Labels.defaultJTextSize);
+//		this.txtCPN = new FormattedDoubleField();
+//		txtCPN.setColumns(Labels.defaultJTextSize);
 
 		this.txtJobID = new FormattedStringField();
 		txtJobID.setColumns(Labels.defaultJTextSize);
@@ -194,8 +194,8 @@ public class ChangeDueDateGUI extends JFrame{
 		myPanel.add(lblJobNo);
 		myPanel.add(txtJobNo,"wrap");
 
-		myPanel.add(lblCPN);
-		myPanel.add(txtCPN,"wrap");
+//		myPanel.add(lblCPN);
+//		myPanel.add(txtCPN,"wrap");
 
 		myPanel.add(lblPenalty);
 		myPanel.add(txtPenaltyRate,"wrap");
@@ -210,7 +210,7 @@ public class ChangeDueDateGUI extends JFrame{
 		myPanel.add(datePicker);
 		myPanel.add(timeSpinner,"wrap");
 
-		myPanel.add(lblOpsHeading,"wrap");
+		myPanel.add(lblOpsHeading);
 		myPanel.add(operationPanel,"wrap");
 
 		btnPanel.add(confirmJob);
@@ -244,8 +244,8 @@ public class ChangeDueDateGUI extends JFrame{
 			txtWaitingTime.setText(String.valueOf(new Date(populatingBatch.getExpectedDueDate())) ) ;
 			txtWaitingTime.setEnabled(false);
 
-			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
-			txtCPN.setEnabled(false);
+//			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
+//			txtCPN.setEnabled(false);
 			
 			txtPenaltyRate.setText(String.valueOf(populatingBatch.getPenaltyRate()));
 			txtPenaltyRate.setEnabled(false);
@@ -279,7 +279,7 @@ public class ChangeDueDateGUI extends JFrame{
 
 		x2 = checkPenaltyRate();
 		if(x2) {
-			x3 = checkCPN();
+//			x3 = checkCPN();
 		}
 		if(x2 & x3) {
 			x4 = checkDueDate();
@@ -397,11 +397,11 @@ public class ChangeDueDateGUI extends JFrame{
 		}
 		return status;
 	}
-
-	/**
+/*
+	*//**
 	 * @return True if CPN entered by customer is valid. Otherwise show an error message and return false
 	 * . Sets value of CPN of batch to the value in the field, if in proper format.
-	 */
+	 *//*
 	private boolean checkCPN() {
 		boolean status = true;
 		if(! txtCPN.getText().matches("-?\\d+(\\.\\d+)?") ) {
@@ -420,7 +420,7 @@ public class ChangeDueDateGUI extends JFrame{
 					txtCPN.getText() ) );
 		}
 		return status;
-	}
+	}*/
 
 	/**
 	 * Initialized the parameters of display of the frame and make it visible at appropriate location 

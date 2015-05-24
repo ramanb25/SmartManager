@@ -128,7 +128,7 @@ public class DefineBatchFrame extends JFrame{
 		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
 //		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
-		this.lblJobID = new JLabel(Labels.CustomerLabels.BatchID);
+		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
 		this.lblOpsHeading = new JLabel(Labels.CustomerLabels.jobOperationHeading);
 		this.lblPenalty = new JLabel(Labels.CustomerLabels.jobPenalty);
 		this.lblBatchSize = new JLabel(Labels.CustomerLabels.batchSize);
@@ -189,7 +189,7 @@ public class DefineBatchFrame extends JFrame{
 	private void _populate() {
 		if(populatingBatch != null) {
 			txtJobID.setText(populatingBatch.getBatchId() );
-			txtJobID.setEditable(false);
+			txtJobID.setEnabled(false);
 //			txtCPN.setText(String.valueOf(populatingBatch.getCPN()) );
 			txtPenalty.setText(String.valueOf(populatingBatch.getPenaltyRate()) );
 			txtNumOps.setText(String.valueOf(populatingBatch.getFirstJob().getOperations().size()) );
@@ -470,9 +470,9 @@ public class DefineBatchFrame extends JFrame{
 	 * with desired size
 	 */
 	private void showGui() {
-		setTitle(" Define Job ");
+		setTitle("Smart Manager :: Order Details ");
 		setResizable(false);
-		setPreferredSize(new Dimension(700,500));
+//		setPreferredSize(new Dimension(700,500));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		pack();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

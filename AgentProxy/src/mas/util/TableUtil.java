@@ -40,10 +40,10 @@ public class TableUtil {
 				//					File font_file = new File("resources/Inconsolata.otf");
 				//					Font iconSolataFont = Font.createFont(Font.TRUETYPE_FONT, font_file);
 				//					ge.registerFont(iconSolataFont);
-				defaultFont = new Font("Sans Serif", Font.PLAIN, 12);
+				defaultFont = new Font("Sans Serif", Font.PLAIN, 12);				
 				font = defaultFont.deriveFont(Font.PLAIN, 14f);
-				headings = defaultFont.deriveFont(Font.BOLD, 18f);
-
+				headings = defaultFont.deriveFont(Font.BOLD, 16f);
+				
 				WebLookAndFeel.install ();
 				TableUtil.setUIFont (new FontUIResource(font)); 
 				//					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

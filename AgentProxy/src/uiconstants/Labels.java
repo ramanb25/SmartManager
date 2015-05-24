@@ -12,16 +12,16 @@ public class Labels {
 	 * UI labels for customer UI
  	 */
 	public class CustomerLabels {
-		public static final String jobGenerateHeading = "Parameters of job ";
+		public static final String jobGenerateHeading = "Order details ";
 		public static final String jobPriority = "CPN :";
-		public static final String jobPenalty = "Penalty Rate (/time) :";
-		public static final String jobDueDate = "Due date :";
-		public static final String BatchID = "Batch ID :";
-		public static final String jobDimension = "Dimensions :";
-		public static final String jobOperationHeading = "Job-Operations :";
+		public static final String jobPenalty = "Penalty Rate (Rs./s)";
+		public static final String jobDueDate = "Your due date";
+		public static final String OrderID = "Order ID";
+		public static final String jobDimension = "Dimensions";
+		public static final String jobOperationHeading = "Operations ";
 		public static final String jobOpeationsDoneButton = "Done";
-		public static final String batchNo = "Batch No : ";
-		public static final String batchSize = "Batch Size : ";
+		public static final String OrderNo = "Order No";
+		public static final String batchSize = "Batch Size";
 	}
 
 	/**
