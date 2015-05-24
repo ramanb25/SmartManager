@@ -27,9 +27,9 @@ public class MachineInfoPanel extends JPanel {
 
 		lblPref3 = new JLabel("Operation : ");
 		lblPref2 = new JLabel("Job Id : ");
-		lblPref4 = new JLabel("Batch Id : ");
+		lblPref4 = new JLabel("Order Id : ");
 		lblPref1 = new JLabel("Customer Id : ");
-		lblPref5 = new JLabel("Batch No : ");
+		lblPref5 = new JLabel("Order No : ");
 		lblPref6 = new JLabel("Current Job No : ");
 
 		valPref1 = new WebHotkeyLabel();

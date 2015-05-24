@@ -156,7 +156,7 @@ public class NegotiationInfo {
 		this.lblCustomerIdHeading = new JLabel("Customer Id  ");
 		this.lblCustomerId = new WebHotkeyLabel();
 
-		this.lblWaitingTimeHeading = new JLabel("Last due date by you ");
+		this.lblWaitingTimeHeading = new JLabel("Due date by customer");
 		this.txtWaitingTime = new JTextField(Labels.defaultJTextSize*2);
 
 		this.txtCPN = new FormattedDoubleField();
@@ -252,7 +252,7 @@ public class NegotiationInfo {
 			//			txtJobNo.setText(String.valueOf(populatingBatch.getBatchNumber()));
 			//			txtJobNo.setEnabled(false);
 
-			txtWaitingTime.setText(String.valueOf(new Date(populatingBatch.getExpectedDueDate())) ) ;
+			txtWaitingTime.setText(String.valueOf(populatingBatch.getDueDateByCustomer()) ) ;
 			txtWaitingTime.setEnabled(false);
 
 			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
@@ -263,7 +263,7 @@ public class NegotiationInfo {
 			Calendar c1 = Calendar.getInstance();
 			c1.setTime(populatingBatch.getDueDateByCustomer());
 
-			timeSpinner.setValue(populatingBatch.getDueDateByCustomer());
+//			timeSpinner.setValue(populatingBatch.getDueDateByCustomer());
 
 			datePicker.getModel().
 			setDate(c1.get(Calendar.YEAR), c1.get(Calendar.MONTH), c1.get(Calendar.DAY_OF_MONTH));

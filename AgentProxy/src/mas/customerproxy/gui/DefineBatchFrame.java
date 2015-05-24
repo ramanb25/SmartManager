@@ -209,7 +209,7 @@ public class DefineBatchFrame extends JFrame{
 					@Override
 					public void run() {
 						JOptionPane.showMessageDialog(DefineBatchFrame.this,
-								"Please enter batch ID !!");
+								"Please enter Order ID !!");
 					}
 				});
 

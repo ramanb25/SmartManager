@@ -53,7 +53,7 @@ public class NegotitationJobTileCellRenderer extends AbstractCellEditor implemen
 		log.info("update data was called");
 		this.jobTileInCell = feed;
 
-		batchID.setText("Batch ID : "+jobTileInCell.getBatchID());
+		batchID.setText("Order ID : "+jobTileInCell.getBatchID());
 		dueDate.setText("Due date : "+formatter.format(jobTileInCell.getCustDueDate()));
 		//		startDate.setText("Start Date : "+formatter.format(jobTileInCell.getCustStartDate()));
 		//		more.setText("more");

@@ -4,7 +4,7 @@ import jade.lang.acl.MessageTemplate;
 import mas.customerproxy.goal.RegisterAgentToBlackboardGoal;
 import mas.customerproxy.goal.CustomerSendNegotiationBatchGoal;
 import mas.customerproxy.plan.NegotiationGuiPlan;
-import mas.customerproxy.plan.CustomerSendNegotiationJobPlan;
+import mas.customerproxy.plan.SendNegotiationJobPlan;
 import mas.util.MessageIds;
 import bdi4jade.util.plan.SimplePlan;
 
@@ -23,7 +23,7 @@ public class basicCapability extends parentBasicCapability{
 				MessageIds.msgGSAjobsUnderNegaotiation),NegotiationGuiPlan.class));
 
 		getPlanLibrary().addPlan(new SimplePlan(CustomerSendNegotiationBatchGoal.class,
-				CustomerSendNegotiationJobPlan.class));
+				SendNegotiationJobPlan.class));
 	}
 
 	@Override

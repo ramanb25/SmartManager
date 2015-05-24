@@ -55,7 +55,7 @@ public class HandleCompletedJobBehavior extends Behaviour{
 				machineSimulator.setCurrentBatch(null);
 
 				log.info("batch no: '"+ cBatch.getBatchNumber() + 
-						"'\tbatch ID : " + cBatch.getBatchId() + 
+						"'\torder ID : " + cBatch.getBatchId() + 
 						"\n\tcompletion : " + new Date(cBatch.getCompletionTime()) + 
 						"\n\tStarting time : " + new Date(cBatch.getStartTimeMillis()) + 
 						"\n\tDue date : " + cBatch.getDueDateByCustomer());

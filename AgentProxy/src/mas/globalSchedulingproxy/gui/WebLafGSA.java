@@ -268,7 +268,7 @@ public class WebLafGSA {
 //		JobNamelbl=new WebHotkeyLabel(jobToShow.getJobName());
 		//		JobNamelbl.setMinimumWidth(200);
 
-		JobIDTxtlbl=new WebLabel("Batch ID");
+		JobIDTxtlbl=new WebLabel("Order ID");
 		JobIDlbl=new WebHotkeyLabel(jobToShow.getBatchID().toString());
 		//		JobIDlbl.setMinimumWidth(150);
 

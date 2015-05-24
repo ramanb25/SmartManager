@@ -59,7 +59,7 @@ public class CurrentJobTableRenderer extends AbstractCellEditor implements Table
 	private void updateData(JobTile feed, boolean isSelected, JTable table) {
 		this.jobTileInCell = feed;
 		
-		batchID.setText("Batch ID : "+jobTileInCell.getBatchID());
+		batchID.setText("Order ID : "+jobTileInCell.getBatchID());
 		dueDate.setText("Due date : "+formatter.format(jobTileInCell.getCustDueDate()));
 //		startDate.setText("Start Date : "+formatter.format(jobTileInCell.getCustStartDate()));
 //		more.setText("more");
