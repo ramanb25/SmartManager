@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -98,7 +99,7 @@ public class MachineGUI extends JFrame {
 	private BufferedImage repairIcon;
 
 	private JScrollPane queueScroller;
-	private JLabel lblMachineIcon;
+//	private JLabel lblMachineIcon;
 	private JLabel lblMachineStatus;
 	private TrayIcon machineTrayIcon;
 	private CustomBatchQueue queuePanel;
@@ -116,7 +117,7 @@ public class MachineGUI extends JFrame {
 	private int screenWidth;
 	private int screenHeight;
 	protected SystemTray tray;
-	private BufferedImage machineIcon2;
+//	private BufferedImage machineIcon2;
 	private static String notificationSound = "resources/notification.wav";;
 	private static AudioStream audioStream;
 
@@ -146,17 +147,17 @@ public class MachineGUI extends JFrame {
 		initButtons();
 		loadTrayIcon();
 
-		try {
 			Image machineIconImage = Toolkit.getDefaultToolkit().getImage("resources/machine1.png");
 			machineTrayIcon=new TrayIcon(machineIconImage,"Machine#"+ 
 					lAgent.getLocalName().split("#")[1]);
-			machineIcon2 = ImageIO.read(new File("resources/machineBigIcon.png"));
-			lblMachineIcon = new JLabel(new ImageIcon(machineIcon2));
-			lblMachineIcon.setVerticalAlignment(SwingConstants.CENTER);
-			lblMachineIcon.setHorizontalAlignment(SwingConstants.LEFT);
-
+//			machineIcon2 = ImageIO.read(new File("resources/machineBigIcon.png"));
+//			lblMachineIcon = new JLabel(new ImageIcon(machineIcon2));
+//			lblMachineIcon.setVerticalAlignment(SwingConstants.CENTER);
+//			lblMachineIcon.setHorizontalAlignment(SwingConstants.LEFT);
+			Font newFont=lblMachineStatus.getFont().deriveFont(Font.BOLD, 48f);
+			lblMachineStatus.setFont(newFont);
 			lblMachineStatus.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMachineStatus.setFont(TableUtil.headings);
+//			lblMachineStatus.setFont(TableUtil.headings);
 
 			GridBagConstraints statusConstraints = new GridBagConstraints();
 			statusConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -169,7 +170,7 @@ public class MachineGUI extends JFrame {
 			iconConstraints.gridy = 1;
 
 			machineSubPanel.add(lblMachineStatus, statusConstraints);
-			machineSubPanel.add(lblMachineIcon, iconConstraints);
+//			machineSubPanel.add(lblMachineIcon, iconConstraints);
 			mcPanel.setBorder((new EmptyBorder(5,5,5,5) ));
 
 			mcPanel.add(upperButtonPanel);
@@ -183,9 +184,7 @@ public class MachineGUI extends JFrame {
 
 			mcPanel.add(lowerButtonPanel);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		jobQ = new ArrayList<Batch>();
 
 		this.queuePanel = new CustomBatchQueue(jobQ);
@@ -247,7 +246,7 @@ public class MachineGUI extends JFrame {
 			e.printStackTrace();
 		}
 		buttonPanelHandler = new buttonPanelListener();
-		btnFailMachineButton = new JButton("Machine Failed");
+		btnFailMachineButton = new JButton("FAIL");
 
 		btnLoadJob = new JButton("Load Job");
 		btnLoadJob.setIcon(new ImageIcon(loadJobIcon));
@@ -327,7 +326,7 @@ public class MachineGUI extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				lblMachineStatus.setText("Failed");
+				lblMachineStatus.setText("FAIL");
 				lblMachineStatus.setForeground(failColor);
 			}
 		});
@@ -348,7 +347,7 @@ public class MachineGUI extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				lblMachineStatus.setText("Processing");
+				lblMachineStatus.setText("BUSY");
 				lblMachineStatus.setForeground(processingColor);
 			}
 		});
@@ -391,7 +390,7 @@ public class MachineGUI extends JFrame {
 			@Override
 			public void run() {
 				currentOpPanel.reset();
-				lblMachineStatus.setText("Idle");
+				lblMachineStatus.setText("IDLE");
 				lblMachineStatus.setForeground(idleColor);
 				btnLoadJob.setEnabled(true);
 				btnUnloadJob.setEnabled(false);
