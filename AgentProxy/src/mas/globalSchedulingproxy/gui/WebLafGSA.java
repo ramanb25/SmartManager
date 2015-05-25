@@ -1,3 +1,4 @@
+
 package mas.globalSchedulingproxy.gui;
 
 import java.awt.AWTException;
@@ -506,6 +507,7 @@ public class WebLafGSA {
 	                untoggleAllBottonButtons();
 					About.setSelected(true);
 					createAndShowAboutWindow();
+					 untoggleAllBottonButtons();
 			}
 		});  
 		About.setRolloverDecoratedOnly ( true );
