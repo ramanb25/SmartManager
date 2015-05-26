@@ -33,24 +33,26 @@ public class ConfigFrame extends JFrame {
 	private WebBreadcrumbPanel panel1;
 
 	public ConfigFrame() {
-		setLayout(new FlowLayout());
+		setLayout(new MigLayout("","65[]","10[10][]"));
 		panel1 = new WebBreadcrumbPanel ( new VerticalFlowLayout() );
-		panel1.add(new JLabel("Choose Agent to start"));
+		add(new JLabel("Choose module to start :"),"wrap");
 
-		final WebRadioButton GSAbtn = new WebRadioButton ( "Global Scheduling Agent" );
+		final WebRadioButton GSAbtn = new WebRadioButton ( "Shop Floor Manager" );
 		panel1.add ( GSAbtn );
 		final WebRadioButton machineBtn = new WebRadioButton ( "Machine" ); 
 		panel1.add (machineBtn);
 		final WebRadioButton customerbtn = new WebRadioButton ( "Customer" ); 
 		panel1.add (customerbtn);
-		final WebRadioButton allAgentsbtn = new WebRadioButton ( "All Agents" ); 
+		final WebRadioButton allAgentsbtn = new WebRadioButton ( "All" ); 
 		panel1.add (allAgentsbtn);
-
+		
 		SwingUtils.groupButtons ( panel1 );
 		add(panel1, "wrap");
 
 		JButton submit = new JButton();
-		submit.setText("Ok, Start this agent");
+		submit.setText("Start");
+		add(submit);
+		
 
 		ActionListener selectionListener = new ActionListener() {
 			@Override
@@ -123,7 +125,7 @@ public class ConfigFrame extends JFrame {
 	}
 
 	private void showGui() {
-		setTitle("SmartM Manager :: Configuration");
+		setTitle("Smart Manager :: Configuration");
 		setMinimumSize(new Dimension(325, 200));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

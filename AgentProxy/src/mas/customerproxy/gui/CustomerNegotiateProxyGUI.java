@@ -287,7 +287,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 			txtJobNo.setText(String.valueOf(populatingBatch.getBatchNumber()));
 			txtJobNo.setEnabled(false);
 
-			txtWaitingTime.setText(String.valueOf(populatingBatch.getDueDateByCustomer())) ;
+			txtWaitingTime.setText(new Date(populatingBatch.getExpectedDueDate()).toString());
 			txtWaitingTime.setEnabled(false);
 
 //			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
@@ -298,7 +298,8 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 			Calendar c1 = Calendar.getInstance();
 			c1.setTime(populatingBatch.getDueDateByCustomer());
 
-			timeSpinner.setValue(new Date(populatingBatch.getExpectedDueDate()));
+//			timeSpinner.setValue(new Date(populatingBatch.getExpectedDueDate()));
+
 			
 
 			datePicker.getModel().
@@ -602,9 +603,6 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			confirmJob.setEnabled(false);
 		}
-
-
-
 
 		@Override
 		public void stateChanged(ChangeEvent arg0) {

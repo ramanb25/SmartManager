@@ -262,7 +262,7 @@ public class NegotiationInfo {
 			//			txtJobNo.setText(String.valueOf(populatingBatch.getBatchNumber()));
 			//			txtJobNo.setEnabled(false);
 
-			txtWaitingTime.setText(String.valueOf(populatingBatch.getDueDateByCustomer()) ) ;
+			txtWaitingTime.setText(String.valueOf(populatingBatch.getDueDateByCustomer())) ;
 			txtWaitingTime.setEnabled(false);
 
 			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
@@ -273,9 +273,8 @@ public class NegotiationInfo {
 			txtNumOps.setText(String.valueOf(populatingBatch.getFirstJob().getOperations().size()));
 
 			Calendar c1 = Calendar.getInstance();
-			c1.setTime(populatingBatch.getDueDateByCustomer());
+			c1.setTime(new Date());
 
-//			timeSpinner.setValue(populatingBatch.getDueDateByCustomer());
 
 			datePicker.getModel().
 			setDate(c1.get(Calendar.YEAR), c1.get(Calendar.MONTH), c1.get(Calendar.DAY_OF_MONTH));

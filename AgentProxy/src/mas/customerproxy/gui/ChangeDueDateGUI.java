@@ -164,7 +164,7 @@ public class ChangeDueDateGUI extends JFrame{
 		this.lblCustomerIdHeading = new JLabel("Customer Id : ");
 		this.lblCustomerId = new WebHotkeyLabel();
 
-		this.lblWaitingTimeHeading = new JLabel("Expected Delivery Date");
+		this.lblWaitingTimeHeading = new JLabel("Expected delivery Date");
 		this.txtWaitingTime = new JTextField(Labels.defaultJTextSize*2);
 
 //		this.txtCPN = new FormattedDoubleField();
