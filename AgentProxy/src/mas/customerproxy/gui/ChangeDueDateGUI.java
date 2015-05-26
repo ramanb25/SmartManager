@@ -153,7 +153,7 @@ public class ChangeDueDateGUI extends JFrame{
 		//			e.printStackTrace();
 		//		}
 
-		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
+		this.lblHeading = new JLabel(Labels.CustomerLabels.customerDetailsHeading);
 //		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
 		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);

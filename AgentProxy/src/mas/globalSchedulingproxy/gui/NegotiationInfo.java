@@ -56,7 +56,7 @@ public class NegotiationInfo {
 	private static final long serialVersionUID = 1L;
 	private GlobalSchedulingAgent gAgent;
 
-	private WebPanel panel1, panel2;
+	private WebPanel panel1, panel2, mainPanel;
 	private JPanel operationPanel;
 	private JPanel btnPanel;
 	private JButton confirmJob;
@@ -67,7 +67,7 @@ public class NegotiationInfo {
 	private JDatePickerImpl datePicker;
 	private JSpinner timeSpinner;
 
-	private JLabel lblHeading;
+	private JLabel lblHeading, lblOrderDetailsHeading;
 	private JLabel lblJobID;
 	private JLabel lblJobNo;
 	private JLabel lblCPN;
@@ -103,11 +103,13 @@ public class NegotiationInfo {
 		}
 
 		this.panel1 = new WebPanel(new MigLayout("","[]50[]","[]10[][][]"));
-		this.panel2 = new WebPanel(new MigLayout("","[]45[]","[]20[][][]20"));
+		this.panel2 = new WebPanel(new MigLayout("","[]45[]","[]10[][][][]"));
+		
+		this.mainPanel = new WebPanel(new MigLayout("","","[]20[]20[]"));
+		
 		btnPanel = new JPanel(new FlowLayout());
 		operationPanel = new JPanel(new MigLayout());
 		this.gAgent = cAgent;
-//		this.confirmJob = new JButton("Confirm");
 		this.negotiateJob = new JButton("Send");
 
 		dateModel = new UtilDateModel();
@@ -145,7 +147,8 @@ public class NegotiationInfo {
 		//			e.printStackTrace();
 		//		}
 
-		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
+		this.lblHeading = new JLabel(Labels.CustomerLabels.customerDetailsHeading);
+		this.lblOrderDetailsHeading = new JLabel(Labels.CustomerLabels.orderDetailsHeading);
 		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
 		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
@@ -179,28 +182,19 @@ public class NegotiationInfo {
 
 		this.lblHeading.setFont(TableUtil.headings);
 		this.lblHeading.setForeground(Color.decode("#3B5998"));
+		
+		this.lblOrderDetailsHeading.setFont(TableUtil.headings);
+		this.lblOrderDetailsHeading.setForeground(Color.decode("#3B5998"));
+		
 		panel1.add(lblHeading,"wrap");
 
 		panel1.add(lblCustomerIdHeading);
 		panel1.add(lblCustomerId,"wrap");
 
-		panel1.add(lblJobID);
-		panel1.add(txtJobID,"wrap");
-
-		//		myPanel.add(lblJobNo);
-		//		myPanel.add(txtJobNo,"wrap");
-
 		panel1.add(lblCPN);
 		panel1.add(txtCPN,"wrap");
 
-		panel1.add(lblPenalty);
-		panel1.add(txtPenaltyRate,"wrap");
-
-		panel1.add(lblBatchSize);
-		panel1.add(txtBatchSize,"wrap");
-
-		panel1.add(lblWaitingTimeHeading);
-		panel1.add(txtWaitingTime,"wrap");
+	
 
 /*		myPanel.add(lblDueDate);
 		myPanel.add(datePicker);
@@ -218,22 +212,38 @@ public class NegotiationInfo {
 		myPanel.add(btnPanel);*/
 		Border borderLine=BorderFactory.createLineBorder(Color.decode("#3B5998"));
 		panel1.setBorder(borderLine);
-		panel2.add(panel1,"span, growx, wrap");
+		mainPanel.add(panel1,"span, growx, wrap");
 		
-		panel2.add(lblWaitingTimeHeading);
-		panel2.add(txtWaitingTime,"span, growx, wrap");
+		panel2.add(lblOrderDetailsHeading,"wrap");
+		
+		panel2.add(lblJobID);
+		panel2.add(txtJobID,"wrap");
 
-		panel2.add(lblDueDate);
-		panel2.add(datePicker, "split 2");
-		panel2.add(timeSpinner,"wrap");
+		panel2.add(lblBatchSize);
+		panel2.add(txtBatchSize,"wrap");
+		
+		panel2.add(lblPenalty);
+		panel2.add(txtPenaltyRate,"wrap");
 
 		panel2.add(lblOpsHeading);
 		panel2.add(operationPanel,"wrap");
 
+		panel2.add(lblWaitingTimeHeading);
+		panel2.add(txtWaitingTime,"span, growx, wrap");
+
+		panel2.add(lblWaitingTimeHeading);
+		panel2.add(txtWaitingTime,"wrap");
+
+		panel2.add(lblDueDate);
+		panel2.add(datePicker, "split 2");
+		panel2.add(timeSpinner,"wrap");
+		
+		panel2.setBorder(borderLine);
 //		btnPanel.add(confirmJob);
 		btnPanel.add(negotiateJob);
 
-		panel2.add(btnPanel, "span 2");
+		mainPanel.add(panel2,"wrap");
+		mainPanel.add(btnPanel);
 		
 		buttonListener clickListener = new buttonListener();
 //		confirmJob.addMouseListener(clickListener);
@@ -256,7 +266,9 @@ public class NegotiationInfo {
 			txtWaitingTime.setEnabled(false);
 
 			txtCPN.setText(String.valueOf(populatingBatch.getCPN()));
+			txtCPN.setEnabled(false);
 			txtPenaltyRate.setText(String.valueOf(populatingBatch.getPenaltyRate()));
+			txtPenaltyRate.setEnabled(false);
 
 			txtNumOps.setText(String.valueOf(populatingBatch.getFirstJob().getOperations().size()));
 
@@ -269,7 +281,8 @@ public class NegotiationInfo {
 			setDate(c1.get(Calendar.YEAR), c1.get(Calendar.MONTH), c1.get(Calendar.DAY_OF_MONTH));
 
 			txtBatchSize.setText(String.valueOf(populatingBatch.getBatchCount()));
-
+			txtBatchSize.setEnabled(false);
+			
 			ArrayList<jobOperation> ops = populatingBatch.getFirstJob().getOperations();
 			operationPanel.removeAll();
 			for(int i = 0; i < ops.size(); i++ ) {
@@ -429,7 +442,7 @@ public class NegotiationInfo {
 	}
 
 	public WebPanel getPanel() {
-		return panel2;
+		return mainPanel;
 	};
 
 }

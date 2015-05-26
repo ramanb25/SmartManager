@@ -6,12 +6,17 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +28,9 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import mas.customerproxy.agent.CustomerAgent;
 import mas.jobproxy.Batch;
@@ -43,6 +51,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import com.alee.extended.label.WebHotkeyLabel;
+import com.alee.laf.panel.WebPanel;
 
 import uiconstants.Labels;
 
@@ -60,7 +69,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 	private BufferedImage plusButtonIcon;
 
 	private JScrollPane scroller;
-	private JPanel myPanel, panel2;
+	private JPanel panel1, panel2, mainPanel;
 	private JPanel operationPanel;
 	private JPanel btnPanel;
 	private JButton confirmJob;
@@ -74,7 +83,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 
 	private int NumOps;
 
-	private JLabel lblHeading;
+	private JLabel lblHeading, lblOrderDetailsHeading;
 	private JLabel lblJobID;
 	private JLabel lblJobNo;
 //	private JLabel lblCPN;
@@ -101,6 +110,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 
 	private Logger log;
 	private job generatedJob;
+	private Border borderLine;
 
 	public CustomerNegotiateProxyGUI(CustomerAgent cAgent, Batch passedBatch) {
 
@@ -115,8 +125,12 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		}
 
 		this.scroller = new JScrollPane();
-		this.myPanel = new JPanel(new MigLayout("",	"[]50[]","[]10[][][]"));
-		this.panel2 = new JPanel(new MigLayout("",	"[]25[]","[]20[10][][]20"));
+		this.panel1 = new WebPanel(new MigLayout("","[]50[]","[]10[][][]"));
+		this.panel2 = new WebPanel(new MigLayout("","[]45[]","[]10[][][][]"));
+		this.mainPanel = new WebPanel(new MigLayout("","","[]20[]20[]"));
+		
+		borderLine=BorderFactory.createLineBorder(Color.decode("#3B5998"));
+		
 		btnPanel = new JPanel(new FlowLayout());
 		operationPanel = new JPanel(new MigLayout());
 		this.cAgent = cAgent;
@@ -146,12 +160,15 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 
 		datePicker = new JDatePickerImpl(datePanel,
 				new DateLabelFormatter());
-
+		dateListener date_Listener =new dateListener();//to disable confirm button
+		datePicker.addActionListener(date_Listener);
+		
 		timeSpinner = new JSpinner( new SpinnerDateModel() );
 		JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm:ss");
 		timeSpinner.setEditor(timeEditor);
 		timeSpinner.setValue(new Date());
-
+		timeSpinner.addChangeListener(date_Listener);
+		
 		//		try {
 		//			plusButtonIcon = ImageIO.read(new File("resources/plusbutton.png"));
 		//			btnOperationPlus = new JButton(new ImageIcon(plusButtonIcon));
@@ -159,8 +176,8 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		//			e.printStackTrace();
 		//		}
 
-		this.lblHeading = new JLabel(Labels.CustomerLabels.jobGenerateHeading);
-//		this.lblCPN = new JLabel(Labels.CustomerLabels.jobPriority);
+		this.lblHeading = new JLabel(Labels.CustomerLabels.customerDetailsHeading);
+		this.lblOrderDetailsHeading = new JLabel(Labels.CustomerLabels.orderDetailsHeading);
 		this.lblDueDate = new JLabel(Labels.CustomerLabels.jobDueDate);
 		this.lblJobID = new JLabel(Labels.CustomerLabels.OrderID);
 		this.lblJobNo = new JLabel(Labels.CustomerLabels.OrderNo);
@@ -194,58 +211,53 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 		this.lblHeading.setFont(TableUtil.headings);
 		this.lblHeading.setForeground(Color.decode("#3B5998"));
 		
-		myPanel.add(lblHeading,"wrap");
+		this.lblOrderDetailsHeading.setFont(TableUtil.headings);
+		this.lblOrderDetailsHeading.setForeground(Color.decode("#3B5998"));
+		
+		panel1.add(lblHeading,"wrap");
 
-		myPanel.add(lblCustomerIdHeading);
-		myPanel.add(lblCustomerId,"growx 20, wrap");
+		panel1.add(lblCustomerIdHeading);
+		panel1.add(lblCustomerId,"growx 20, wrap");
 
-		myPanel.add(lblJobID);
-		myPanel.add(txtJobID,"wrap");
 
-		myPanel.add(lblJobNo);
-		myPanel.add(txtJobNo,"wrap");
+		this.scroller = new JScrollPane(panel1);
+		this.scroller.setBorder(borderLine);
+		
+		mainPanel.add(this.scroller,"span, growx, wrap");
+		
+		panel2.add(lblOrderDetailsHeading,"wrap");
+		
+		panel2.add(lblJobID);
+		panel2.add(txtJobID,"wrap");
 
-//		myPanel.add(lblCPN);
-//		myPanel.add(txtCPN,"wrap");
-
-		myPanel.add(lblPenalty);
-		myPanel.add(txtPenaltyRate,"wrap");
-
-		myPanel.add(lblBatchSize);
-		myPanel.add(txtBatchSize,"wrap");
-
-/*		myPanel.add(lblWaitingTimeHeading);
-		myPanel.add(txtWaitingTime,"wrap");
-
-		myPanel.add(lblDueDate);
-		myPanel.add(datePicker);
-		myPanel.add(timeSpinner,"wrap");
-
-		myPanel.add(lblOpsHeading);
-		myPanel.add(operationPanel,"wrap");
-
-		btnPanel.add(confirmJob);
-		btnPanel.add(negotiateJob);
-		btnPanel.add(btnCancelNegotiation);
-
-		myPanel.add(btnPanel);*/
-		this.scroller = new JScrollPane(myPanel);
-		panel2.add(this.scroller,"span, growx, wrap");
-		panel2.add(lblWaitingTimeHeading);
-		panel2.add(txtWaitingTime,"span, growx, wrap");
-
-		panel2.add(lblDueDate);
-		panel2.add(datePicker, "split 2");
-		panel2.add(timeSpinner,"wrap");
+		panel2.add(lblBatchSize);
+		panel2.add(txtBatchSize,"wrap");
+		
+		panel2.add(lblPenalty);
+		panel2.add(txtPenaltyRate,"wrap");
 
 		panel2.add(lblOpsHeading);
 		panel2.add(operationPanel,"wrap");
 
+		panel2.add(lblWaitingTimeHeading);
+		panel2.add(txtWaitingTime,"span, growx, wrap");
+
+		panel2.add(lblWaitingTimeHeading);
+		panel2.add(txtWaitingTime,"wrap");
+
+		panel2.add(lblDueDate);
+		panel2.add(datePicker, "split 2");
+		panel2.add(timeSpinner,"wrap");
+		
+		panel2.setBorder(borderLine);
+
+		mainPanel.add(panel2, "wrap");
+		
 		btnPanel.add(confirmJob);
 		btnPanel.add(negotiateJob);
 		btnPanel.add(btnCancelNegotiation);
 
-		panel2.add(btnPanel, "span 2");
+		mainPanel.add(btnPanel);
 		
 //		add(scroller);
 
@@ -256,7 +268,7 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 
 		_populate();
 		scroller.setSize(panel2.WIDTH, scroller.HEIGHT);
-		add(panel2);
+		add(mainPanel);
 		showGui();
 	}
 
@@ -577,4 +589,26 @@ public class CustomerNegotiateProxyGUI extends JFrame{
 			}
 		}
 	};
+
+	class dateListener implements ActionListener, ChangeListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			confirmJob.setEnabled(false);
+		}
+
+
+
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
+			confirmJob.setEnabled(false);
+		}
+
+
+		
+	}
+
 }
+
+

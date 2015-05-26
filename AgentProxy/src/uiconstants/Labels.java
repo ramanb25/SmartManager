@@ -12,8 +12,9 @@ public class Labels {
 	 * UI labels for customer UI
  	 */
 	public class CustomerLabels {
-		public static final String jobGenerateHeading = "Order details ";
-		public static final String jobPriority = "CPN :";
+		public static final String customerDetailsHeading = "Customer details ";
+		public static final String orderDetailsHeading = "Order details ";
+		public static final String jobPriority = "Priority ";
 		public static final String jobPenalty = "Penalty Rate (Rs./s)";
 		public static final String jobDueDate = "Desired delivery date";
 		public static final String OrderID = "Order ID";

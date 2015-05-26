@@ -320,11 +320,15 @@ public class WebLafGSA {
 //		jobGSADueDatelbl.setFont(lblFont);
 
 //		detailsPanel.add(JobNametextlbl,"growx");
-		detailsPanel.add(JobIDTxtlbl,"growx");
-		detailsPanel.add(JobIDlbl,"wrap, growx");
 		
 		detailsPanel.add(customerTxtlbl,"growx");
 		detailsPanel.add(customerlbl,"wrap, growx");
+		
+		detailsPanel.add(priorityTextlbl,"growx");
+		detailsPanel.add(prioritylbl,"wrap, growx");
+		
+		detailsPanel.add(JobIDTxtlbl,"growx");
+		detailsPanel.add(JobIDlbl,"wrap, growx");
 		
 		detailsPanel.add(jobCustStartDateTxtlbl,"growx");
 		detailsPanel.add(jobCustStartDatelbl,"wrap, growx");
@@ -337,8 +341,7 @@ public class WebLafGSA {
 //		detailsPanel.add(durationTextlbl,"growx");
 //		detailsPanel.add(durationlbl,"wrap, growx");
 		
-		detailsPanel.add(priorityTextlbl,"growx");
-		detailsPanel.add(prioritylbl,"wrap, growx");
+
 //		detailsPanel.add(jobGSAStartDateTxtlbl,"growx");
 //		detailsPanel.add(jobGSADueDateTxtlbl,"wrap, growx");
 		
