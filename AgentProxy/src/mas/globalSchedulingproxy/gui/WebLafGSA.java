@@ -103,6 +103,7 @@ public class WebLafGSA {
 	public static TrayIcon GSAguiIcon ;
 	private static WebToggleButton[] bottomButtons;
 	private SystemTray tray;
+	private static ImageIcon smartManagerWinIcon;
 
 	public WebLafGSA(GlobalSchedulingAgent globalSchedulingAgent){
 		this.GSA=globalSchedulingAgent;
@@ -133,8 +134,8 @@ public class WebLafGSA {
 
 		this.welcomeScreenFrame=new WebFrame("Smart Manager :: "+"Shop Floor Manager");
 //		welcomeScreenFrame.setResizable(false);
-		ImageIcon img = new ImageIcon("resources/smartManager.png","Logo icon");
-		welcomeScreenFrame.setIconImage(img.getImage());
+		smartManagerWinIcon = new ImageIcon("resources/smartManager.png","Logo icon");
+		welcomeScreenFrame.setIconImage(smartManagerWinIcon.getImage());
 		this.layout=new BorderLayout();
 		this.MainPanel=new WebPanel(layout);
 		//		this.MainPanel.setOpaque(false);
@@ -637,90 +638,39 @@ public class WebLafGSA {
 	}
 
 	protected static void createAndShowAboutWindow() {
-		JFrame AboutFrame=new JFrame("About");
-		AboutFrame.setLayout(new MigLayout());
-		JPanel panel1=new JPanel(new FlowLayout());
-		JPanel panel2=new JPanel(new FlowLayout());
-		JPanel panel3=new JPanel(new FlowLayout());
-
-		JLabel thankYoulbl=new JLabel("We thank ");
-		JLabel thankYoulbl2=new JLabel("for giving us opportunity ");
-		JLabel thankYoulbl3=new JLabel("to contribute in this project.");
-		JButton names=new JButton("- Developers");
-		JButton ProfNameButton=new JButton("Prof. M. S. Kulkarni");
-
-		ProfNameButton.addActionListener(new ActionListener() {
-	    	 
-            public void actionPerformed(ActionEvent e) {
-            	URI linkToOpen = null;
-				try {
-					linkToOpen = new URI("http://web.iitd.ac.in/~mskulkarni/");
-				} catch (URISyntaxException e1) {
-					e1.printStackTrace();
-				}
-            	openWebpage(linkToOpen);
-            }
-        });
-		
-		names.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showDeveloperList();
-				
-			}
-
-			private void showDeveloperList() {
-				JFrame developersFrame = new JFrame("Developer Credits");
+				JFrame developersFrame = new JFrame("Developers");
 				developersFrame.setLayout(new MigLayout());
-				
-				String[] columnNames = {"Name",
-                        "IIT Delhi Entry Number"};
+				developersFrame.setIconImage(smartManagerWinIcon.getImage());	
 //				String[][] namesData={{"Nikhil Chilwant","2011ME20769"},{"Anand Prajapati", "2011ME20764"},
 //				{"Rohit Kumar","2010ME20797"},{"Viplov Arora","2010ME20807"},{"Pranam Bansal","2010me20786"}
 //				,{"Pankaj Kumawat","2010me20784"}};
 				
 				JPanel devCreditPanel = new JPanel(new MigLayout());
-				devCreditPanel.add(new WebHotkeyLabel("<html><b>Core developers</b></html>"),"wrap");
-				devCreditPanel.add(new JLabel("<html><p>Nikhil Chilwant (2011ME20769), Anand Prajapati (2011ME20764)</p></html>"),
-						"wrap");
+//				devCreditPanel.add(new WebHotkeyLabel("<html><b>Core developers</b></html>"),"wrap");
+				devCreditPanel.add(new JLabel("<html><p>Nikhil Chilwant</p></html>"));
+				devCreditPanel.add(new JButton("L"), "wrap");
+				devCreditPanel.add(new JLabel("<html><p>Anand Prajapati</p></html>"));
+				devCreditPanel.add(new JButton("L"), "wrap");
 				
-				devCreditPanel.add(new WebHotkeyLabel("<html><b>Special thanks to </b></html>"),"wrap");
-				devCreditPanel.add(new JLabel("<html><p>Rohit Kumar (2010ME20797), Viplov Arora (2010ME20807),<br/> Pranam Bansal (2010ME20786),"+
-						" Pankaj Kumawat (2010ME20784)</p></html>"));
-//				JTable developersTable=new JTable(namesData,columnNames);
-//				developersTable.setShowGrid(false);
-				JScrollPane scrollPane = new JScrollPane(devCreditPanel);
+
 				
-				developersFrame.add(scrollPane);
-				developersFrame.pack();
+				developersFrame.add(devCreditPanel);
+				developersFrame.setMinimumSize(new Dimension(300,150));
+//				developersFrame.pack();
 				
 				int centerX = (int)screenSize.getWidth() / 2;
 				int centerY = (int)screenSize.getHeight() / 2;
 				developersFrame.setLocation(centerX - developersFrame.getWidth() / 2, 
 						centerY - developersFrame.getHeight() / 2);
 				developersFrame.setVisible(true);
-			}
-		});
-		
-		panel1.add(thankYoulbl);
-		panel1.add(ProfNameButton);
-		panel2.add(thankYoulbl2,"wrap");
-		panel2.add(thankYoulbl3,"wrap");
-		panel3.add(names);
-		
-		AboutFrame.add(panel1,"wrap");
-		AboutFrame.add(panel2,"wrap");
-		AboutFrame.add(panel3,"wrap");
-		
-		AboutFrame.pack();
-		
-		int centerX = (int)screenSize.getWidth() / 2;
-		int centerY = (int)screenSize.getHeight() / 2;
-		AboutFrame.setLocation(centerX - AboutFrame.getWidth() / 2, 
-				centerY - AboutFrame.getHeight() / 2);
-		
-		AboutFrame.setVisible(true);
+				
+            	URI linkToOpen = null;
+				try {
+					linkToOpen = new URI("http://smartmanager.bitbucket.org");
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+				openWebpage(linkToOpen);
 		
 	}
 	
