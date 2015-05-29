@@ -412,7 +412,7 @@ public class WebLafGSA {
 		//		jobGSADueDatelbl.setMinimumWidth(150);
 
 		durationTextlbl=new WebLabel("Duration (seconds)");
-		durationlbl=new WebHotkeyLabel(Double.toString(jobTileInCell.getProcessingTime()));
+		durationlbl=new WebHotkeyLabel(Double.toString(jobTileInCell.getProcessingTime()/1000.0));
 		//		durationlbl.setMinimumWidth(150);
 
 		priorityTextlbl=new WebLabel("Priority");

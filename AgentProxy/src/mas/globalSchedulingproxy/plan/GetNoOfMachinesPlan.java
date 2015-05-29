@@ -53,7 +53,12 @@ public class GetNoOfMachinesPlan extends OneShotBehaviour implements PlanBody{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void action() {
-
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//allow machines to connect
 		DFAgentDescription dfd = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType(ID.Machine.Service);

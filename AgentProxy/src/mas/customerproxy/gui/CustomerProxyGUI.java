@@ -59,7 +59,7 @@ import uiconstants.Labels;
 @SuppressWarnings("serial")
 public class CustomerProxyGUI extends JFrame {
 
-	private JScrollPane scroller;
+//	private JScrollPane scroller;
 	private JButton createJob;
 	private CustomerAgent cAgent;
 	private JTabbedPane tPanes;
@@ -134,8 +134,8 @@ public class CustomerProxyGUI extends JFrame {
 		panelsForTab[0].add(IITDlogolabel,componentConstraints);
 		
 		tPanes.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
-		this.scroller = new JScrollPane(this.panelsForTab[0]);
-		this.tPanes.addTab(tabTitles[0],this.scroller );
+//		this.scroller = new JScrollPane(this.panelsForTab[0]);
+		this.tPanes.addTab(tabTitles[0],this.panelsForTab[0] );
 
 		_initAcceptedbatchesPanel();
 		panelsForTab[1].add(acceptedJobsPanel, BorderLayout.CENTER);

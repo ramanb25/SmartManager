@@ -5,8 +5,8 @@ package uiconstants;
  */
 public class Labels {
 	public static final int defaultJTextSize = 12;
-	public static final String createJobButton = "Send Job";
-	public static final String sendJobButton = "Submit";
+	public static final String createJobButton = "Create";
+	public static final String sendJobButton = "Send to manufacturer";
 
 	/**
 	 * UI labels for customer UI
