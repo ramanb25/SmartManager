@@ -106,7 +106,7 @@ public class MachineGUI extends JFrame {
 	private ArrayList<Batch> jobQ;
 
 	public static Color failColor = Color.RED;
-	public static Color maintenanceColor = Color.yellow;
+	public static Color maintenanceColor = Color.BLACK;
 	public static Color idleColor = Color.BLACK;
 	public static Color processingColor =  new Color(46, 139, 87);
 
@@ -147,14 +147,14 @@ public class MachineGUI extends JFrame {
 		initButtons();
 		loadTrayIcon();
 
-			Image machineIconImage = Toolkit.getDefaultToolkit().getImage("resources/machine1.png");
+			Image machineIconImage = Toolkit.getDefaultToolkit().getImage("resources/machineIcon.png");
 			machineTrayIcon=new TrayIcon(machineIconImage,"Machine#"+ 
 					lAgent.getLocalName().split("#")[1]);
 //			machineIcon2 = ImageIO.read(new File("resources/machineBigIcon.png"));
 //			lblMachineIcon = new JLabel(new ImageIcon(machineIcon2));
 //			lblMachineIcon.setVerticalAlignment(SwingConstants.CENTER);
 //			lblMachineIcon.setHorizontalAlignment(SwingConstants.LEFT);
-			Font newFont=lblMachineStatus.getFont().deriveFont(Font.BOLD, 48f);
+			Font newFont=lblMachineStatus.getFont().deriveFont(Font.BOLD, 24f);
 			lblMachineStatus.setFont(newFont);
 			lblMachineStatus.setHorizontalAlignment(SwingConstants.CENTER);
 //			lblMachineStatus.setFont(TableUtil.headings);
@@ -213,7 +213,7 @@ public class MachineGUI extends JFrame {
 			@Override
 			public void run() {
 
-				Image image = Toolkit.getDefaultToolkit().getImage("resources/repair_64.png");
+				Image image = Toolkit.getDefaultToolkit().getImage("resources/MaintTrayIcon.png");
 				customerTrayIcon = new TrayIcon(image, lAgent.getLocalName());
 				if (SystemTray.isSupported()) {
 					tray = SystemTray.getSystemTray();
@@ -246,7 +246,7 @@ public class MachineGUI extends JFrame {
 			e.printStackTrace();
 		}
 		buttonPanelHandler = new buttonPanelListener();
-		btnFailMachineButton = new JButton("FAIL");
+		btnFailMachineButton = new JButton("Report failure");
 
 		btnLoadJob = new JButton("Load Job");
 		btnLoadJob.setIcon(new ImageIcon(loadJobIcon));

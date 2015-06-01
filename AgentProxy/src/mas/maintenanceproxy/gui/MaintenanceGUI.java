@@ -223,11 +223,11 @@ public class MaintenanceGUI extends JFrame {
 	private void showGui() {
 		setTitle("Smart Manager :: "+" Maintenance Module # " + mAgent.getLocalName().split("#")[1] );
 		setResizable(false);
-		setPreferredSize(new Dimension(800,600));
+		setPreferredSize(new Dimension(600,600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int centerX = (int)screenSize.getWidth() / 2;
+		int centerX = (int)(screenSize.getWidth() / 1.35);
 		int centerY = (int)screenSize.getHeight() / 2;
 		setLocation(centerX - getWidth() / 2, centerY - getHeight() / 2);
 		super.setVisible(true);

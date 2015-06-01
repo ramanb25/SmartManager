@@ -81,6 +81,7 @@ public class MonitorMaintenanceStatusBehavior extends Behaviour{
 			if(timeStopWatch.getTime() > warningPeriod) {
 
 				ticks ++;
+				log.info("ticks="+ticks);
 				if(gui != null) {
 					ZoneDataUpdate maintResponse = null;
 					MaintenanceResponse reponse = new MaintenanceResponse(ticks);
