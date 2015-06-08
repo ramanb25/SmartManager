@@ -70,7 +70,7 @@ import sun.audio.AudioStream;
 @SuppressWarnings("serial")
 public class MachineGUI extends JFrame {
 
-	private TrayIcon customerTrayIcon;
+	private TrayIcon maintTrayIcon;
 	private Logger log;
 
 	private JLayeredPane layers;
@@ -214,13 +214,13 @@ public class MachineGUI extends JFrame {
 			public void run() {
 
 				Image image = Toolkit.getDefaultToolkit().getImage("resources/MaintTrayIcon.png");
-				customerTrayIcon = new TrayIcon(image, lAgent.getLocalName());
+				maintTrayIcon = new TrayIcon(image, lAgent.getLocalName());
 				if (SystemTray.isSupported()) {
 					tray = SystemTray.getSystemTray();
 
-					customerTrayIcon.setImageAutoSize(true);
+					maintTrayIcon.setImageAutoSize(true);
 					try {
-						tray.add(customerTrayIcon);
+						tray.add(maintTrayIcon);
 						tray.add(machineTrayIcon);
 					} catch (AWTException e) {
 						log.info("TrayIcon could not be added.");
@@ -705,19 +705,19 @@ public class MachineGUI extends JFrame {
 			public void run() {
 				switch(type) {
 				case ERROR :
-					customerTrayIcon.displayMessage(title,message, TrayIcon.MessageType.ERROR);
+					maintTrayIcon.displayMessage(title,message, TrayIcon.MessageType.ERROR);
 					break;
 
 				case INFO:
-					customerTrayIcon.displayMessage( title,message, TrayIcon.MessageType.INFO);
+					maintTrayIcon.displayMessage( title,message, TrayIcon.MessageType.INFO);
 					break;
 
 				case WARNING:
-					customerTrayIcon.displayMessage( title,message, TrayIcon.MessageType.WARNING);
+					maintTrayIcon.displayMessage( title,message, TrayIcon.MessageType.WARNING);
 					break;
 
 				case NONE:
-					customerTrayIcon.displayMessage( title,message, TrayIcon.MessageType.NONE);
+					maintTrayIcon.displayMessage( title,message, TrayIcon.MessageType.NONE);
 					break;
 				}
 			}
@@ -885,7 +885,7 @@ public class MachineGUI extends JFrame {
 	}
 
 	public void clean() {
-		tray.remove(customerTrayIcon);
+		tray.remove(maintTrayIcon);
 		tray.remove(machineTrayIcon);
 
 	}
