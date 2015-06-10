@@ -642,7 +642,7 @@ public class MachineGUI extends JFrame {
 	}
 	private JButton createIIDbutton() {
 	
-		JButton temp = new JButton("Website");
+		JButton temp = new JButton("About");
 
 		temp.addActionListener(new ActionListener() {
 	    	 

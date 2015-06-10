@@ -655,11 +655,11 @@ public class WebLafGSA {
 			}); 
 				
 				devCreditPanel.add(AnandViewProfile,"wrap");
-				
+				devCreditPanel.add(new JLabel("Visit http://smartmanager.bitbucket.org for more details."),"span 2");
 
 				
 				developersFrame.add(devCreditPanel);
-				developersFrame.setMinimumSize(new Dimension(300,150));
+				developersFrame.setMinimumSize(new Dimension(400,150));
 //				developersFrame.pack();
 				
 				int centerX = (int)screenSize.getWidth() / 2;
